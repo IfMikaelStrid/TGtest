@@ -55,9 +55,10 @@ namespace NetCoreTest.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Title,Content")] Post post)
         {
+            var id = Guid.NewGuid();
             post.Author = "Mikael";
             post.PublishTimeStamp = DateTime.Now;
-            post.PostId = new Guid().ToString();
+            post.PostId = id.ToString();
             post.GuestBookId = 1;
             if (ModelState.IsValid)
             {
@@ -69,7 +70,7 @@ namespace NetCoreTest.Controllers
         }
 
         // GET: Posts/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
             {
@@ -120,7 +121,7 @@ namespace NetCoreTest.Controllers
         }
 
         // GET: Posts/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
             {
@@ -140,7 +141,7 @@ namespace NetCoreTest.Controllers
         // POST: Posts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var post = await _context.Posts.FindAsync(id);
             _context.Posts.Remove(post);
