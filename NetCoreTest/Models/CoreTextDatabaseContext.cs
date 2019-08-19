@@ -13,28 +13,15 @@ namespace NetCoreTest.Models
         {
         }
 
-        public DbSet<Guestbook> Blogs { get; set; }
+        public DbSet<GuestBook> Guestbooks { get; set; }
         public DbSet<Post> Posts { get; set; }
 
-        public class Guestbook
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            [Key]
-            public int BlogId { get; set; }
-            public string Url { get; set; }
-
-            public ICollection<Post> Posts { get; set; }
+            modelBuilder.Entity<GuestBook>().ToTable("GuestBook");
+            modelBuilder.Entity<Post>().ToTable("Post");
         }
 
-        public class Post
-        {
-            [Key]
-            public int PostId { get; set; }
-            public string Title { get; set; }
-            public string Content { get; set; }
-
-            public int BlogId { get; set; }
-            public Guestbook Guestbook { get; set; }
-        }
     }
 }
 

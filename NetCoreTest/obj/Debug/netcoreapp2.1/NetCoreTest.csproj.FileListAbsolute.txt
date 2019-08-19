@@ -30,3 +30,13 @@ C:\Projects\NetCoreTest\NetCoreTest\obj\Debug\netcoreapp2.1\NetCoreTest.Views.pd
 C:\Projects\NetCoreTest\NetCoreTest\obj\Debug\netcoreapp2.1\NetCoreTest.dll
 C:\Projects\NetCoreTest\NetCoreTest\obj\Debug\netcoreapp2.1\NetCoreTest.pdb
 C:\Projects\NetCoreTest\NetCoreTest\obj\Debug\netcoreapp2.1\NetCoreTest.csproj.CopyComplete
+C:\Projects\NetCoreTest\NetCoreTest\obj\Debug\netcoreapp2.1\Razor\Views\GuestBooks\Create.g.cshtml.cs
+C:\Projects\NetCoreTest\NetCoreTest\obj\Debug\netcoreapp2.1\Razor\Views\GuestBooks\Delete.g.cshtml.cs
+C:\Projects\NetCoreTest\NetCoreTest\obj\Debug\netcoreapp2.1\Razor\Views\GuestBooks\Details.g.cshtml.cs
+C:\Projects\NetCoreTest\NetCoreTest\obj\Debug\netcoreapp2.1\Razor\Views\GuestBooks\Edit.g.cshtml.cs
+C:\Projects\NetCoreTest\NetCoreTest\obj\Debug\netcoreapp2.1\Razor\Views\GuestBooks\Index.g.cshtml.cs
+C:\Projects\NetCoreTest\NetCoreTest\obj\Debug\netcoreapp2.1\Razor\Views\Posts\Create.g.cshtml.cs
+C:\Projects\NetCoreTest\NetCoreTest\obj\Debug\netcoreapp2.1\Razor\Views\Posts\Delete.g.cshtml.cs
+C:\Projects\NetCoreTest\NetCoreTest\obj\Debug\netcoreapp2.1\Razor\Views\Posts\Details.g.cshtml.cs
+C:\Projects\NetCoreTest\NetCoreTest\obj\Debug\netcoreapp2.1\Razor\Views\Posts\Edit.g.cshtml.cs
+C:\Projects\NetCoreTest\NetCoreTest\obj\Debug\netcoreapp2.1\Razor\Views\Posts\Index.g.cshtml.cs

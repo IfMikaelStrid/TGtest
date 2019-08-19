@@ -18,6 +18,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NetCoreTest.Models;
 using Newtonsoft.Json.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace NetCoreTest
 {
@@ -81,6 +82,8 @@ namespace NetCoreTest
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+            //services.AddDbContext<CoreTextDatabaseContext>(options =>
+            //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             // Use SQL Database if in Azure, otherwise, use SQLite
             services.AddDbContext<CoreTextDatabaseContext>(options =>
