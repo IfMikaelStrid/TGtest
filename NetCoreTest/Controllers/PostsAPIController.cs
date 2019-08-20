@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NetCoreTest.Models;
 
+
 namespace NetCoreTest.Controllers
 {
     [Route("api/[controller]")]
@@ -24,6 +25,9 @@ namespace NetCoreTest.Controllers
         [HttpGet]
         public IEnumerable<Post> GetPosts()
         {
+            var jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(_context.Posts);
+
+
             return _context.Posts;
         }
 

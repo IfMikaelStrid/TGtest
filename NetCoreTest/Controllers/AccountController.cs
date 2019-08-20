@@ -13,7 +13,8 @@ namespace NetCoreTest.Controllers
     public class AccountController : Controller
     {
         private readonly IConfiguration _configuration;
-
+        private UserController _userController;
+        
         public AccountController(IConfiguration configuration)
         {
             _configuration = configuration;
@@ -22,7 +23,8 @@ namespace NetCoreTest.Controllers
         [HttpGet]
         public IActionResult Login(string returnUrl = "/")
         {
-            return Challenge(new AuthenticationProperties() { RedirectUri = returnUrl });
+            var challenge = Challenge(new AuthenticationProperties() { RedirectUri = returnUrl });
+            return challenge;
         }
 
         [Authorize]

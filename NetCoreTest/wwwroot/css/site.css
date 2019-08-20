@@ -35,3 +35,14 @@ body {
         display: none;
     }
 }
+body {
+    background-color: #323c41;
+}
+.PostCard {
+    padding:5px;
+    background-color:#cccccc;
+    border-radius: 5px;
+    -webkit-box-shadow: 9px 18px 25px -3px rgba(0,0,0,0.24);
+    -moz-box-shadow: 9px 18px 25px -3px rgba(0,0,0,0.24);
+    box-shadow: 9px 18px 25px -3px rgba(0,0,0,0.24);
+}
