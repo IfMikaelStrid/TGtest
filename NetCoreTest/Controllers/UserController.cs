@@ -14,7 +14,6 @@ namespace NetCoreTest.Controllers
     public class UserController : ControllerBase
     {
         private readonly CoreTextDatabaseContext _context;
-        private AccountController _accountService;
 
         public UserController(CoreTextDatabaseContext context)
         {
@@ -43,7 +42,22 @@ namespace NetCoreTest.Controllers
             {
                 return NotFound();
             }
-            var oauthUser = _accountService.User;
+            return Ok(user);
+        }
+
+        public async Task<IActionResult> GetUserByName(string UserName)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var user = await _context.Users.FindAsync(UserName);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
             return Ok(user);
         }
 

@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - NetCoreTest</title>
-
+    <title>Guestbook - NetCoreTest</title>
+    <script src="https://kit.fontawesome.com/2be57563ac.js"></script>
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
@@ -22,20 +22,25 @@
     <div class="container body-content">
         @if (User.Identity.IsAuthenticated)
         {
-            <li><a asp-controller="Account" asp-action="UserProfile">Hello @User.Identity.Name!</a></li>
-            <li><a asp-controller="Account" asp-action="Logout">Logout</a></li>
+            @RenderBody()
         }
         else
         {
-            <li><a asp-controller="Account" asp-action="Login">Login</a></li>
+            IgnoreBody();
+            <a asp-controller="Account" asp-action="Login">Login</a>
         }
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2019 - Ted & Gustaf test</p>
-        </footer>
-    </div>
 
+    </div>
+    <footer>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="footer-functions">
+                <div>Hello @User.Identity.Name</div>
+                <a asp-controller="Account" asp-action="Logout">Logout</a>
+            </div>
+        }
+        <p>&copy; 2019 - Ted & Gustaf test</p>
+    </footer>
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
@@ -57,7 +62,7 @@
         </script>
         <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
-    
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>

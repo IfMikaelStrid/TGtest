@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,6 +16,7 @@ namespace NetCoreTest.Controllers
     public class PostsAPIController : ControllerBase
     {
         private readonly CoreTextDatabaseContext _context;
+        private readonly AccountController _accountController;
 
         public PostsAPIController(CoreTextDatabaseContext context)
         {
@@ -92,6 +94,18 @@ namespace NetCoreTest.Controllers
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
+            }
+
+            if (User.Identity.IsAuthenticated)
+            {
+                var GitHubName = User.FindFirst(c => c.Type == ClaimTypes.Name)?.Value;
+                post.Author = GitHubName;
+                post.PostId = Guid.NewGuid().ToString();
+                post.PublishTimeStamp = DateTime.Now;
+                post.GuestBookId = 1;
+            }
+            else {
+                return Unauthorized();
             }
 
             _context.Posts.Add(post);
