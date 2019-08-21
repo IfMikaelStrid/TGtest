@@ -15,10 +15,18 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
+    <link rel="stylesheet" href="~/css/Home.css" />
+    <link rel="stylesheet" href="~/css/Account.css" />
 </head>
 <body>
     <partial name="_CookieConsentPartial" />
-
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Home</a>
+            </div>
+        </div>
+    </nav>
     <div class="container body-content">
         @if (User.Identity.IsAuthenticated)
         {
@@ -27,21 +35,25 @@
         else
         {
             IgnoreBody();
-            <a asp-controller="Account" asp-action="Login">Login</a>
-        }
-
-    </div>
-    <footer>
-        @if (User.Identity.IsAuthenticated)
-        {
-            <div class="footer-functions">
-                <div>Hello @User.Identity.Name - <a asp-controller="Account" asp-action="UserProfile">View your posts</a></div>
-                <a asp-controller="Account" asp-action="Logout">Logout</a>
+            <div class="logincontainer">
+                <a asp-controller="Account" asp-action="Login">Login</a>
             </div>
         }
-        <p>&copy; 2019 - Ted & Gustaf test</p>
-    </footer>
-
+    </div>
+    <div class="container">
+        <footer>
+            <div class="stickyfooter">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="footer-functions">
+                        <div>Hello @User.Identity.Name - <a asp-controller="Account" asp-action="UserProfile">View your posts</a></div>
+                        <a asp-controller="Account" asp-action="Logout">Logout</a>
+                    </div>
+                }
+                <p>&copy; 2019 - Ted & Gustaf test</p>
+            </div>
+        </footer>
+    </div>
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>

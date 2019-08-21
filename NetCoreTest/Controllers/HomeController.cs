@@ -30,8 +30,8 @@ namespace NetCoreTest.Controllers
             var _userController = new UserController(_context);
 
             var result = await _userController.GetUserByName(ssoName);
-
-            if (result.Equals(typeof(NotFoundResult)))
+            var resultype = result.GetType();
+            if (resultype.Equals(typeof(NotFoundResult)) || resultype.Equals(typeof(NotFoundObjectResult)))
             {
                 var newUser = new Models.User()
                 {

@@ -30,6 +30,31 @@ namespace NetCoreTest.Controllers
             return _context.Posts;
         }
 
+        [HttpGet("/getAllUserPosts")]
+        public IActionResult GetUserPosts()
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var GitHubName = User.FindFirst(c => c.Type == ClaimTypes.Name)?.Value;
+
+            var user = _context.Users
+                .Where(b => b.UserName == GitHubName)
+                .FirstOrDefault();
+
+            var posts = _context.Posts
+                .Where(b => b.AuthorId == user.UserId);
+
+            if (posts == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(posts);
+        }
+
         // GET: api/PostsAPI/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetPost([FromRoute] string id)
@@ -53,17 +78,21 @@ namespace NetCoreTest.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPost([FromRoute] string id, [FromBody] Post post)
         {
+            var putPost = await _context.Posts.FindAsync(id);
+            putPost.Title = post.Title;
+            putPost.Content = post.Content;
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != post.PostId)
+            if (id != putPost.PostId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(post).State = EntityState.Modified;
+            _context.Entry(putPost).State = EntityState.Modified;
 
             try
             {

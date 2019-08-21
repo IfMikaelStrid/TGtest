@@ -1,10 +1,11 @@
 ﻿import React from 'react';
 import { render } from 'react-dom';
+import { MyPosts } from './Components/ShowMyPosts';
 
 const AccountApp = () => (
     <>
         <div>  
-            hello
+            <MyPosts />
         </div>
     </>
 );

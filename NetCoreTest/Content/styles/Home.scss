@@ -1,0 +1,196 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
+for details on configuring this project to bundle and minify static web assets. */
+@import url('https://fonts.googleapis.com/css?family=Lobster|Source+Serif+Pro&display=swap');
+
+body {
+    padding: 50px 10% 20px 10%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    flex: 1 0 auto;
+}
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+
+.footer {
+    flex-shrink: 0;
+}
+
+.footer-functions {
+    margin: 20px;
+    color: #fff;
+}
+
+p {
+    margin: 20px;
+    color: #fff;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}
+
+body {
+    background-color: #323c41;
+}
+
+.postcard-container {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    -ms-box-orient: horizontal;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.PostCard {
+    margin: 10px;
+    padding: 10px;
+    background-color: rgb(17, 17, 17);
+    border-radius: 5px;
+    color: white;
+    -webkit-box-shadow: 9px 18px 25px -3px rgba(0,0,0,0.24);
+    -moz-box-shadow: 9px 18px 25px -3px rgba(0,0,0,0.24);
+    box-shadow: 9px 18px 25px -3px rgba(0,0,0,0.24);
+}
+
+.postCard-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.postCard-column {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    height: 100%;
+    flex: 1;
+}
+
+.postCard-flare {
+    flex-grow: 1;
+}
+
+.PostCard-title {
+    font-family: 'Lobster', cursive;
+    font-size: 30px;
+    padding: 10px 0 10px 5px;
+    min-width: 60px;
+}
+
+.PostCard-content {
+    font-family: 'Source Serif Pro', serif;
+    font-size: medium;
+    padding: 15px;
+}
+
+.postCard-upvote {
+    padding: 10px 0 0 10px;
+    align-content: flex-end;
+    flex: 0 1 auto;
+    align-self: flex-end;
+}
+
+.PostCard-footer {
+    font-family: 'Source Serif Pro', serif;
+    padding: 5px;
+}
+
+.PostCard-timestamp {
+    font-family: 'Source Serif Pro', serif;
+}
+
+.submit-button {
+    margin-top: 15px;
+    height: 55px;
+    color: white;
+    letter-spacing: 0.5rem;
+    text-transform: uppercase;
+    width: 100%;
+    font-size: 16px;
+    -webkit-appearance: none;
+    line-height: 1;
+    background: rgb(236, 89, 144);
+    padding: 20px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: transparent;
+    border-image: initial;
+    border-radius: 5px;
+}
+
+.upvoteIcon {
+    color: rgb(236, 89, 144);
+}
+
+.title-input {
+    margin-bottom: 5px;
+}
+
+.newPostButton {
+    position: fixed;
+    font-size: xx-large;
+    right: 20%;
+    bottom: 10%;
+    margin: 10px 10px 10px 0px;
+    background-color: #f44336;
+    border: none;
+    color: white;
+    width: 58px;
+    border-radius: 50%;
+    box-shadow: 9px 18px 25px -3px rgba(0, 0, 0, 0.24);
+}
+@media only screen and (max-width: 1000px) {
+    .newPostButton {
+        position: fixed;
+        font-size: xx-large;
+        right: 20px;
+        bottom: 10px;
+        margin: 10px 10px 10px 0px;
+        background-color: #f44336;
+        border: none;
+        color: white;
+        width: 58px;
+        border-radius: 50%;
+        box-shadow: 9px 18px 25px -3px rgba(0, 0, 0, 0.24);
+    }
+}
+.logincontainer {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

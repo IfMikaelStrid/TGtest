@@ -1,0 +1,24 @@
+.PostCard-clamper {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 30ch; }
+
+.PostCard-myPosts {
+  width: 100%; }
+
+.postCard-buttonContainer {
+  -ms-flex-pack: center;
+      justify-content: center;
+  font-size: 25px; }
+
+.rowDelete {
+  -ms-flex-pack: space-evenly;
+      justify-content: space-evenly; }
+
+.delete {
+  width: 20%;
+  margin: 5px; }
+
+.submit {
+  background: #F44336; }

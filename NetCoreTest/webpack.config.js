@@ -7,13 +7,13 @@ var BrowserSyncPlugin = require("browser-sync-webpack-plugin");
 
 module.exports = {
     entry: {
-        Home: "./Scripts/Home/react/index.js",
-        Account: "./Scripts/Account/react/index.js"
+        Home: ["./Scripts/Home/react/index.js", "./Content/styles/Home.scss"],
+        Account: ["./Scripts/Account/react/index.js", "./Content/styles/Account.scss"]
     },
 
     output: {
-        path: path.resolve(__dirname, "./wwwroot/js/"),
-        filename: "[name].js"
+        path: path.resolve(__dirname, "./wwwroot/"),
+        filename: "js/[name].js"
     },
     module: {
         rules: [
@@ -23,6 +23,29 @@ module.exports = {
                 use: {
                     loader: "babel-loader"
                 }
+            },
+            {
+                test: /\.scss$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: './css/[name].css',
+                        }
+                    },
+                    {
+                        loader: 'extract-loader'
+                    },
+                    {
+                        loader: 'css-loader?-url'
+                    },
+                    {
+                        loader: 'postcss-loader'
+                    },
+                    {
+                        loader: 'sass-loader'
+                    }
+                ]
             }
         ]
     },

@@ -29,14 +29,15 @@ namespace NetCoreTest.Controllers
 
         // GET: api/Upvotes/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetUpvote([FromRoute] int id)
+        public IActionResult GetUpvote([FromRoute] string id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var upvote = await _context.Upvotes.FindAsync(id);
+            var upvote = _context.Upvotes
+                .Where(b => b.PostId == id);
 
             if (upvote == null)
             {
@@ -88,6 +89,13 @@ namespace NetCoreTest.Controllers
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
+            }
+
+            var upvoteCheck = _context.Upvotes
+                .Where(b => b.PostId == upvote.PostId && b.UserId == upvote.UserId);
+
+            if (upvoteCheck.Any()) {
+                return Conflict();
             }
 
             _context.Upvotes.Add(upvote);

@@ -42,7 +42,7 @@ export class ListPostsComponent extends Component {
     }
 
     render() {
-        Moment.locale('se');
+        Moment.locale('en');
         const { error, isLoaded, items } = this.state;
         if (error) {
             return <div>Error: {error.message}</div>;
