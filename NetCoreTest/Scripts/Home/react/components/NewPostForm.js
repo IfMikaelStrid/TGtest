@@ -19,7 +19,6 @@ export class NewPostForm extends Component {
     /* This life cycle hook gets executed when the component mounts */
 
     handleFormSubmit(event) {
-
         const data = new FormData(event.target);
         fetch('/api/PostsAPI/', {
             method: 'POST',
@@ -43,6 +42,7 @@ export class NewPostForm extends Component {
     handleClearForm() {
         // Logic for resetting the form
     }
+
     render() {
         return (
             <form className="form-container" onSubmit={this.handleFormSubmit}>

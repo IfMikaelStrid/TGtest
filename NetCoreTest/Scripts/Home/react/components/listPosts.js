@@ -1,6 +1,7 @@
 ﻿import React, { Component } from 'react';
 import { render } from 'react-dom';
 import Moment from 'moment';
+import { UpVotes } from './UpVotes';
 
 export class ListPostsComponent extends Component {
     constructor(props) {
@@ -11,8 +12,6 @@ export class ListPostsComponent extends Component {
             items: [],
             condition:false
         };
-
-        this.onUpvote = this.onUpvote.bind(this);
     }
 
     componentDidMount() {
@@ -32,13 +31,6 @@ export class ListPostsComponent extends Component {
                     });
                 }
             )
-    }
-
-    onUpvote(postId) {
-        console.log(postId);
-        this.setState({
-            condition: !this.state.condition
-        });
     }
 
     render() {
@@ -71,7 +63,9 @@ export class ListPostsComponent extends Component {
                                     <div className="postCard-column">
                                         <div className="postCard-flare" />
                                         <div className="postCard-upvote">
-                                            <div className="upvoteIcon" onClick={() => this.onUpvote(item.postId)}><i id={item.postId} className="far fa-heart" /></div>
+                                            <div className="upvoteIcon">
+                                                <UpVotes item={item} /> 
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

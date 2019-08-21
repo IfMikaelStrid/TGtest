@@ -8,6 +8,9 @@ body {
   -ms-flex-direction: column;
       flex-direction: column; }
 
+.navbar-inverse {
+  border: none; }
+
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
@@ -179,3 +182,6 @@ body {
       align-items: center;
   -ms-flex-pack: center;
       justify-content: center; }
+
+.upvote-number {
+  padding: 0 5px 0 5px; }

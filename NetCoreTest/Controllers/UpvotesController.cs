@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -36,20 +37,46 @@ namespace NetCoreTest.Controllers
                 return BadRequest(ModelState);
             }
 
-            var upvote = _context.Upvotes
+            var upvotes = _context.Upvotes
                 .Where(b => b.PostId == id);
 
-            if (upvote == null)
+            if (upvotes == null)
             {
                 return NotFound();
             }
 
-            return Ok(upvote);
+            return Ok(upvotes);
         }
+
+        [HttpGet("getuserupvotes/{id}")]
+        public IActionResult GetUserUpvotes([FromRoute] string id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var GitHubName = User.FindFirst(c => c.Type == ClaimTypes.Name)?.Value;
+
+            var user = _context.Users
+                .Where(b => b.UserName == GitHubName)
+                .FirstOrDefault();
+
+            var upvoteCheck = _context.Upvotes
+                .Where(b => b.PostId == id && b.UserId == user.UserId);
+
+            if (!upvoteCheck.Any())
+            {
+                return NotFound(false);
+            }
+
+            return Ok(true);
+        }
+
 
         // PUT: api/Upvotes/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUpvote([FromRoute] int id, [FromBody] Upvote upvote)
+        public async Task<IActionResult> PutUpvote([FromRoute] string id, [FromBody] Upvote upvote)
         {
             if (!ModelState.IsValid)
             {
@@ -90,6 +117,13 @@ namespace NetCoreTest.Controllers
             {
                 return BadRequest(ModelState);
             }
+            var GitHubName = User.FindFirst(c => c.Type == ClaimTypes.Name)?.Value;
+
+            var user = _context.Users
+                .Where(b => b.UserName == GitHubName)
+                .FirstOrDefault();
+
+            upvote.UserId = user.UserId;
 
             var upvoteCheck = _context.Upvotes
                 .Where(b => b.PostId == upvote.PostId && b.UserId == upvote.UserId);
@@ -97,12 +131,14 @@ namespace NetCoreTest.Controllers
             if (upvoteCheck.Any()) {
                 return Conflict();
             }
-
+            upvote.Id = Guid.NewGuid().ToString();
             _context.Upvotes.Add(upvote);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetUpvote", new { id = upvote.Id }, upvote);
         }
+
+
 
         // DELETE: api/Upvotes/5
         [HttpDelete("{id}")]
@@ -125,7 +161,7 @@ namespace NetCoreTest.Controllers
             return Ok(upvote);
         }
 
-        private bool UpvoteExists(int id)
+        private bool UpvoteExists(string id)
         {
             return _context.Upvotes.Any(e => e.Id == id);
         }

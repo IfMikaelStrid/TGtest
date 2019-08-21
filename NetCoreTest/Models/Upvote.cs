@@ -9,7 +9,7 @@ namespace NetCoreTest.Models
     public class Upvote
     {
         [Key]
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string PostId { get; set; }
         public string UserId { get; set; }
     }
