@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <Folder Include="Content\styles\" />
+    <Folder Include="Scripts\Account\React\Components\" />
     <Folder Include="wwwroot\js\" />
   </ItemGroup>
 

@@ -17,6 +17,7 @@ namespace NetCoreTest.Models
         public string Title { get; set; }
         public string Content { get; set; }
         public DateTime PublishTimeStamp { get; set; }
+        public string AuthorId { get; set; }
         public List<Upvote> Upvotes { get; set; }
         public int GuestBookId { get; set; }
     }

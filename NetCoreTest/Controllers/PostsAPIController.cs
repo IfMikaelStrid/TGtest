@@ -27,9 +27,6 @@ namespace NetCoreTest.Controllers
         [HttpGet]
         public IEnumerable<Post> GetPosts()
         {
-            var jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(_context.Posts);
-
-
             return _context.Posts;
         }
 
@@ -99,7 +96,13 @@ namespace NetCoreTest.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 var GitHubName = User.FindFirst(c => c.Type == ClaimTypes.Name)?.Value;
+
+                var user = _context.Users
+                    .Where(b => b.UserName == GitHubName)
+                    .FirstOrDefault();
+
                 post.Author = GitHubName;
+                post.AuthorId = user.UserId;
                 post.PostId = Guid.NewGuid().ToString();
                 post.PublishTimeStamp = DateTime.Now;
                 post.GuestBookId = 1;

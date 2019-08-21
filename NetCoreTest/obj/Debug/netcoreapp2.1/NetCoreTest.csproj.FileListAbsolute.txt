@@ -40,3 +40,4 @@ C:\Projects\NetCoreTest\NetCoreTest\obj\Debug\netcoreapp2.1\Razor\Views\Posts\De
 C:\Projects\NetCoreTest\NetCoreTest\obj\Debug\netcoreapp2.1\Razor\Views\Posts\Details.g.cshtml.cs
 C:\Projects\NetCoreTest\NetCoreTest\obj\Debug\netcoreapp2.1\Razor\Views\Posts\Edit.g.cshtml.cs
 C:\Projects\NetCoreTest\NetCoreTest\obj\Debug\netcoreapp2.1\Razor\Views\Posts\Index.g.cshtml.cs
+C:\Projects\NetCoreTest\NetCoreTest\obj\Debug\netcoreapp2.1\Razor\Views\Account\UserProfile.g.cshtml.cs

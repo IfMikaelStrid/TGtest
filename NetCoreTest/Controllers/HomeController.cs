@@ -19,23 +19,29 @@ namespace NetCoreTest.Controllers
         }
         public async Task<IActionResult> Index()
         {
+            await getSetUserAsync(); 
+            return View();
+        }
+
+        private async Task getSetUserAsync()
+        {
             var ssoName = User.FindFirst(c => c.Type == ClaimTypes.Name)?.Value;
-            var ssoEmail = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
 
             var _userController = new UserController(_context);
 
             var result = await _userController.GetUserByName(ssoName);
 
-            var newUser = new Models.User()
+            if (result.Equals(typeof(NotFoundResult)))
             {
-                UserEmail = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value,
-                UserName = User.FindFirst(c => c.Type == ClaimTypes.Name)?.Value,
-                UserId = Guid.NewGuid().ToString(),
-                UserImageURL = ""
-            };
-            await _userController.PostUser(newUser);
-           
-            return View();
+                var newUser = new Models.User()
+                {
+                    UserEmail = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value,
+                    UserName = User.FindFirst(c => c.Type == ClaimTypes.Name)?.Value,
+                    UserId = Guid.NewGuid().ToString(),
+                    UserImageURL = ""
+                };
+                await _userController.PostUser(newUser);
+            }
         }
 
         public IActionResult About()

@@ -52,8 +52,9 @@ namespace NetCoreTest.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = await _context.Users.FindAsync(UserName);
-
+            var user = _context.Users
+                                .Where(b => b.UserName == UserName)
+                                .FirstOrDefault();
             if (user == null)
             {
                 return NotFound();

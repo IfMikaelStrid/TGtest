@@ -6,10 +6,14 @@ var WebpackNotifierPlugin = require("webpack-notifier");
 var BrowserSyncPlugin = require("browser-sync-webpack-plugin");
 
 module.exports = {
-    entry: "./Scripts/Home/react/index.js",
+    entry: {
+        Home: "./Scripts/Home/react/index.js",
+        Account: "./Scripts/Account/react/index.js"
+    },
+
     output: {
         path: path.resolve(__dirname, "./wwwroot/js/"),
-        filename: "site.js"
+        filename: "[name].js"
     },
     module: {
         rules: [

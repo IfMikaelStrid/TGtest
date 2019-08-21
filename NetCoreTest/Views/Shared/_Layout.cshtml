@@ -35,7 +35,7 @@
         @if (User.Identity.IsAuthenticated)
         {
             <div class="footer-functions">
-                <div>Hello @User.Identity.Name</div>
+                <div>Hello @User.Identity.Name - <a asp-controller="Account" asp-action="UserProfile">View your posts</a></div>
                 <a asp-controller="Account" asp-action="Logout">Logout</a>
             </div>
         }
@@ -45,7 +45,6 @@
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
     <environment exclude="Development">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
@@ -60,8 +59,8 @@
                 crossorigin="anonymous"
                 integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd">
         </script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
+
 
     @RenderSection("Scripts", required: false)
 </body>
