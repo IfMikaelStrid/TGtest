@@ -25,11 +25,11 @@ namespace NetCoreTest.Controllers
 
         private async Task getSetUserAsync()
         {
-            var ssoName = User.FindFirst(c => c.Type == ClaimTypes.Name)?.Value;
+            var UserEmail = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
 
             var _userController = new UserController(_context);
 
-            var result = await _userController.GetUserByName(ssoName);
+            var result = await _userController.GetUserByEmail(UserEmail);
             var resultype = result.GetType();
             if (resultype.Equals(typeof(NotFoundResult)) || resultype.Equals(typeof(NotFoundObjectResult)))
             {

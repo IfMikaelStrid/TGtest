@@ -61,6 +61,22 @@ namespace NetCoreTest.Controllers
             }
             return Ok(user);
         }
+        public async Task<IActionResult> GetUserByEmail(string UserEmail)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var user = _context.Users
+                                .Where(b => b.UserEmail == UserEmail)
+                                .FirstOrDefault();
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return Ok(user);
+        }
 
         // PUT: api/User/5
         [HttpPut("{id}")]

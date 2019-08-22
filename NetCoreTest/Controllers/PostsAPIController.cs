@@ -38,10 +38,10 @@ namespace NetCoreTest.Controllers
                 return BadRequest(ModelState);
             }
 
-            var GitHubName = User.FindFirst(c => c.Type == ClaimTypes.Name)?.Value;
+            var GitHubEmail = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
 
             var user = _context.Users
-                .Where(b => b.UserName == GitHubName)
+                .Where(b => b.UserEmail == GitHubEmail)
                 .FirstOrDefault();
 
             var posts = _context.Posts
@@ -124,13 +124,13 @@ namespace NetCoreTest.Controllers
 
             if (User.Identity.IsAuthenticated)
             {
-                var GitHubName = User.FindFirst(c => c.Type == ClaimTypes.Name)?.Value;
+                var GitHubEmail = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
 
                 var user = _context.Users
-                    .Where(b => b.UserName == GitHubName)
+                    .Where(b => b.UserName == GitHubEmail)
                     .FirstOrDefault();
 
-                post.Author = GitHubName;
+                post.Author = user.UserName;
                 post.AuthorId = user.UserId;
                 post.PostId = Guid.NewGuid().ToString();
                 post.PublishTimeStamp = DateTime.Now;

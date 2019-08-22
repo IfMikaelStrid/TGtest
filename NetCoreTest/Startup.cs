@@ -54,6 +54,7 @@ namespace NetCoreTest
 
                 options.ClaimActions.MapJsonKey(ClaimTypes.NameIdentifier, "id");
                 options.ClaimActions.MapJsonKey(ClaimTypes.Name, "name");
+                options.ClaimActions.MapJsonKey(ClaimTypes.Email, "email");
                 options.ClaimActions.MapJsonKey("urn:github:login", "login");
                 options.ClaimActions.MapJsonKey("urn:github:url", "html_url");
                 options.ClaimActions.MapJsonKey("urn:github:avatar", "avatar_url");

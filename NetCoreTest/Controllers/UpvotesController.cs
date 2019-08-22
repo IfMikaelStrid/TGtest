@@ -56,10 +56,10 @@ namespace NetCoreTest.Controllers
                 return BadRequest(ModelState);
             }
 
-            var GitHubName = User.FindFirst(c => c.Type == ClaimTypes.Name)?.Value;
+            var GitHubEmail = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
 
             var user = _context.Users
-                .Where(b => b.UserName == GitHubName)
+                .Where(b => b.UserEmail == GitHubEmail)
                 .FirstOrDefault();
 
             var upvoteCheck = _context.Upvotes
@@ -117,10 +117,10 @@ namespace NetCoreTest.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var GitHubName = User.FindFirst(c => c.Type == ClaimTypes.Name)?.Value;
+            var GitHubEmail = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
 
             var user = _context.Users
-                .Where(b => b.UserName == GitHubName)
+                .Where(b => b.UserEmail == GitHubEmail)
                 .FirstOrDefault();
 
             upvote.UserId = user.UserId;
