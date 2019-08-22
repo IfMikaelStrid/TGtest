@@ -127,9 +127,11 @@ namespace NetCoreTest.Controllers
                 var GitHubEmail = User.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
 
                 var user = _context.Users
-                    .Where(b => b.UserName == GitHubEmail)
+                    .Where(b => b.UserEmail == GitHubEmail)
                     .FirstOrDefault();
-
+                if (user.UserName == "") {
+                    user.UserName = GitHubEmail;
+                }
                 post.Author = user.UserName;
                 post.AuthorId = user.UserId;
                 post.PostId = Guid.NewGuid().ToString();
